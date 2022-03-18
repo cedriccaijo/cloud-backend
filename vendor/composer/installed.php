@@ -6,7 +6,7 @@
     'aliases' => 
     array (
     ),
-    'reference' => 'b8a52a82cbce76933645e3806904469f3d1a09f2',
+    'reference' => 'aa9d1dcd31b97e1ef35dab444c969506298ea754',
     'name' => '__root__',
   ),
   'versions' => 
@@ -18,7 +18,7 @@
       'aliases' => 
       array (
       ),
-      'reference' => 'b8a52a82cbce76933645e3806904469f3d1a09f2',
+      'reference' => 'aa9d1dcd31b97e1ef35dab444c969506298ea754',
     ),
     'doctrine/annotations' => 
     array (
@@ -430,6 +430,15 @@
       ),
       'reference' => '10e438f53a972439675dc720706f0cd5c0ed94f1',
     ),
+    'symfony/form' => 
+    array (
+      'pretty_version' => 'v5.4.5',
+      'version' => '5.4.5.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '18f4f8209d2db06fc3cf5ba3b2eb8e4706b34aac',
+    ),
     'symfony/framework-bundle' => 
     array (
       'pretty_version' => 'v5.4.6',
@@ -491,6 +500,15 @@
       ),
       'reference' => '143024ab0e426285d3d9b7f6a3ce51e12a9d8ec5',
     ),
+    'symfony/options-resolver' => 
+    array (
+      'pretty_version' => 'v5.4.3',
+      'version' => '5.4.3.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'cc1147cb11af1b43f503ac18f31aa3bec213aba8',
+    ),
     'symfony/password-hasher' => 
     array (
       'pretty_version' => 'v5.4.3',
@@ -522,6 +540,15 @@
       array (
       ),
       'reference' => '81b86b50cf841a64252b439e738e97f4a34e2783',
+    ),
+    'symfony/polyfill-intl-icu' => 
+    array (
+      'pretty_version' => 'v1.25.0',
+      'version' => '1.25.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'c023a439b8551e320cc3c8433b198e408a623af1',
     ),
     'symfony/polyfill-intl-normalizer' => 
     array (
@@ -725,6 +752,15 @@
       array (
       ),
       'reference' => '45ae3ee8155f93042a1033b166a7a3ed57b96a92',
+    ),
+    'symfony/validator' => 
+    array (
+      'pretty_version' => 'v5.4.6',
+      'version' => '5.4.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => 'ab461eab209e3be062ba9c609d37b37e8364dbe4',
     ),
     'symfony/var-dumper' => 
     array (
