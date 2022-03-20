@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %} 
+
+{% block title %}Publication{% endblock %} 
+
+{% block body %}
+
+    <h1 class="text-6xl text-center pb-12"> Publication </h1>
+
+   {% for publication in publications %}
+        <div class="text-center pt-8 pb-4">
+            <h2> {{ publication.title }}</h2>
+            <p> {{ publication.content }}</p>
+            <a href="/publication/{{ publication.id}}">Montrer plus</a>
+        </div>
+   {% endfor %}
+{% endblock %}

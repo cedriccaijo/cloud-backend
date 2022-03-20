@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -36,6 +38,16 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Publications::class, mappedBy="author", orphanRemoval=true)
+     */
+    private $posted;
+
+    public function __construct()
+    {
+        $this->posted = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -129,5 +141,35 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function toArray()
     {
         return ['id' => $this->id, 'email'=>$this->email];
+    }
+
+    /**
+     * @return Collection<int, Publications>
+     */
+    public function getPosted(): Collection
+    {
+        return $this->posted;
+    }
+
+    public function addPosted(Publications $posted): self
+    {
+        if (!$this->posted->contains($posted)) {
+            $this->posted[] = $posted;
+            $posted->setAuthor($this);
+        }
+
+        return $this;
+    }
+
+    public function removePosted(Publications $posted): self
+    {
+        if ($this->posted->removeElement($posted)) {
+            // set the owning side to null (unless already changed)
+            if ($posted->getAuthor() === $this) {
+                $posted->setAuthor(null);
+            }
+        }
+
+        return $this;
     }
 }

@@ -29,7 +29,7 @@ class UserController extends AbstractController
     }    
 
     /**
-    * @Route("/api/user", name="app_user")
+    * @Route("/read", name="app_user")
     */
     public function index()
     {
