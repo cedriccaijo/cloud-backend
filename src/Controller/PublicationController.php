@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Publications;
 use App\Form\PublicationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,24 +39,24 @@ class PublicationController extends AbstractController
     }
     
     /**
-     * @Route("/create, name="app_publication")
+     * @Route("/create", name="create_publication")
      */
     public function create(Request $request): Response
     {
-        $publication = new Publication();
+        $publication = new Publications();
         $form = $this->createForm(PublicationFormType::class, $publication);
 
-        $form->HandlerRequest($request);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()){
             $newPublication = $form->getData(); 
             $this->entityManager->persist($newPublication);
             $this->entityManager->flush();
 
-            return $this->redirectToRoute('');
+            return $this->redirectToRoute('/publication');
         }
 
-        return $this->render('publication/create.html.twig'[
-            'form' -> $form->createView()
+        return $this->renderForm('publication/create.html.twig', [
+            'form' => $form
         ]);
     }
 }

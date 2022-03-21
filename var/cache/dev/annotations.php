@@ -74,6 +74,8 @@ return [[
 '[C]App%5CController%5CSecurityController%23logout' => 1,
 'App%5CEntity%5CUser' => 5,
 '[C]App%5CEntity%5CUser' => 1,
+'App%5CEntity%5CUser%23__construct' => 0,
+'[C]App%5CEntity%5CUser%23__construct' => 1,
 'App%5CEntity%5CUser%23getId' => 0,
 '[C]App%5CEntity%5CUser%23getId' => 1,
 'App%5CEntity%5CUser%23getEmail' => 0,
@@ -96,6 +98,14 @@ return [[
 '[C]App%5CEntity%5CUser%23getSalt' => 1,
 'App%5CEntity%5CUser%23eraseCredentials' => 0,
 '[C]App%5CEntity%5CUser%23eraseCredentials' => 1,
+'App%5CEntity%5CUser%23toArray' => 0,
+'[C]App%5CEntity%5CUser%23toArray' => 1,
+'App%5CEntity%5CUser%23getPosted' => 0,
+'[C]App%5CEntity%5CUser%23getPosted' => 1,
+'App%5CEntity%5CUser%23addPosted' => 0,
+'[C]App%5CEntity%5CUser%23addPosted' => 1,
+'App%5CEntity%5CUser%23removePosted' => 0,
+'[C]App%5CEntity%5CUser%23removePosted' => 1,
 'App%5CEntity%5CUser%24id' => 6,
 '[C]App%5CEntity%5CUser%24id' => 1,
 'App%5CEntity%5CUser%24email' => 7,
@@ -104,6 +114,8 @@ return [[
 '[C]App%5CEntity%5CUser%24roles' => 1,
 'App%5CEntity%5CUser%24password' => 9,
 '[C]App%5CEntity%5CUser%24password' => 1,
+'App%5CEntity%5CUser%24posted' => 10,
+'[C]App%5CEntity%5CUser%24posted' => 1,
 'Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController' => 0,
 '[C]Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController' => 1,
 'Doctrine%5CBundle%5CDoctrineBundle%5CController%5CProfilerController%23__construct' => 0,
@@ -582,7 +594,7 @@ return [[
 ], [
 
 0 => [],
-1 => 1647591676,
+1 => 1647851850,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -652,7 +664,8 @@ return [[
 5 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
-            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+            clone (($p = &\Symfony\Component\VarExporter\Internal\Registry::$prototypes)['Doctrine\\ORM\\Mapping\\Entity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\Entity')),
+            clone ($p['Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Symfony\\Bridge\\Doctrine\\Validator\\Constraints\\UniqueEntity')),
         ],
         null,
         [
@@ -660,10 +673,24 @@ return [[
                 'repositoryClass' => [
                     'App\\Repository\\UserRepository',
                 ],
+                'message' => [
+                    1 => 'There is already an account with this email',
+                ],
+                'fields' => [
+                    1 => [
+                        'email',
+                    ],
+                ],
+                'groups' => [
+                    1 => [
+                        'Default',
+                    ],
+                ],
             ],
         ],
         [
             $o[0],
+            $o[1],
         ],
         []
     );
@@ -769,6 +796,31 @@ return [[
                 ],
                 'scale' => [
                     null,
+                ],
+            ],
+        ],
+        [
+            $o[0],
+        ],
+        []
+    );
+},
+10 => static function () {
+    return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
+        $o = [
+            clone (\Symfony\Component\VarExporter\Internal\Registry::$prototypes['Doctrine\\ORM\\Mapping\\OneToMany'] ?? \Symfony\Component\VarExporter\Internal\Registry::p('Doctrine\\ORM\\Mapping\\OneToMany')),
+        ],
+        null,
+        [
+            'stdClass' => [
+                'mappedBy' => [
+                    'author',
+                ],
+                'targetEntity' => [
+                    'App\\Entity\\Publications',
+                ],
+                'orphanRemoval' => [
+                    true,
                 ],
             ],
         ],

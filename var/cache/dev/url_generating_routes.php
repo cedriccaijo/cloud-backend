@@ -4,7 +4,11 @@
 
 return [
     'app_default' => [[], ['_controller' => 'App\\Controller\\DefaultController::index'], [], [['text', '/default']], [], [], []],
+    'app_publication' => [[], ['_controller' => 'App\\Controller\\PublicationController::index'], [], [['text', '/publication']], [], [], []],
+    'create_publication' => [[], ['_controller' => 'App\\Controller\\PublicationController::create'], [], [['text', '/create']], [], [], []],
+    'app_register' => [[], ['_controller' => 'App\\Controller\\RegistrationController::register'], [], [['text', '/register']], [], [], []],
     'app_login' => [[], ['_controller' => 'App\\Controller\\SecurityController::login'], [], [['text', '/login']], [], [], []],
     'app_logout' => [[], ['_controller' => 'App\\Controller\\SecurityController::logout'], [], [['text', '/logout']], [], [], []],
+    'app_userapp_user' => [[], ['_controller' => 'App\\Controller\\UserController::index'], [], [['text', '/api/user/read']], [], [], []],
     '_preview_error' => [['code', '_format'], ['_controller' => 'error_controller::preview', '_format' => 'html'], ['code' => '\\d+'], [['variable', '.', '[^/]++', '_format', true], ['variable', '/', '\\d+', 'code', true], ['text', '/_error']], [], [], []],
 ];
