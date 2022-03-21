@@ -75,10 +75,15 @@ class __TwigTemplate_95731da2d7961e79da4ee843757b4078ef68beb0895c36a37fbf1d15b60
 
     ";
         // line 9
-        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), 'form');
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), 'form_start');
         echo "
 
+        <button type=\"submit\" class=\"btn\">Envoyer</button>
     ";
+        // line 12
+        echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock((isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), 'form_end');
+        echo "
+";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
 
@@ -96,7 +101,7 @@ class __TwigTemplate_95731da2d7961e79da4ee843757b4078ef68beb0895c36a37fbf1d15b60
 
     public function getDebugInfo()
     {
-        return array (  78 => 9,  73 => 6,  66 => 5,  53 => 3,  36 => 1,);
+        return array (  84 => 12,  78 => 9,  73 => 6,  66 => 5,  53 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -109,12 +114,10 @@ class __TwigTemplate_95731da2d7961e79da4ee843757b4078ef68beb0895c36a37fbf1d15b60
 
     <h1 class=\"text-6xl text-center pb-12\"> Crée une publication </h1>
 
-    {{ form(form) }}
+    {{ form_start(form) }}
 
-    {# {{ form_start(form) }}
-
-        <button type=\"submit\" class=\"btn\">Register</button>
-    {{ form_end(form)}} #}
+        <button type=\"submit\" class=\"btn\">Envoyer</button>
+    {{ form_end(form)}}
 {% endblock %}", "publication/create.html.twig", "/h3-workshop/templates/publication/create.html.twig");
     }
 }
