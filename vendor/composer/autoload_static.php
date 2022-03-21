@@ -88,6 +88,10 @@ class ComposerStaticInitea9d015a26d0788dc202f34a0db122eb
             'ProxyManager\\' => 13,
             'PhpParser\\' => 10,
         ),
+        'N' => 
+        array (
+            'Nelmio\\CorsBundle\\' => 18,
+        ),
         'L' => 
         array (
             'Laminas\\Code\\' => 13,
@@ -350,6 +354,10 @@ class ComposerStaticInitea9d015a26d0788dc202f34a0db122eb
         array (
             0 => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser',
         ),
+        'Nelmio\\CorsBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/nelmio/cors-bundle',
+        ),
         'Laminas\\Code\\' => 
         array (
             0 => __DIR__ . '/..' . '/laminas/laminas-code/src',
@@ -428,9 +436,16 @@ class ComposerStaticInitea9d015a26d0788dc202f34a0db122eb
 
     public static $classMap = array (
         'App\\Controller\\DefaultController' => __DIR__ . '/../..' . '/src/Controller/DefaultController.php',
+        'App\\Controller\\PublicationController' => __DIR__ . '/../..' . '/src/Controller/PublicationController.php',
+        'App\\Controller\\RegistrationController' => __DIR__ . '/../..' . '/src/Controller/RegistrationController.php',
         'App\\Controller\\SecurityController' => __DIR__ . '/../..' . '/src/Controller/SecurityController.php',
+        'App\\Controller\\UserController' => __DIR__ . '/../..' . '/src/Controller/UserController.php',
+        'App\\Entity\\Publications' => __DIR__ . '/../..' . '/src/Entity/Publications.php',
         'App\\Entity\\User' => __DIR__ . '/../..' . '/src/Entity/User.php',
+        'App\\Form\\PublicationFormType' => __DIR__ . '/../..' . '/src/Form/PublicationFormType.php',
+        'App\\Form\\RegistrationFormType' => __DIR__ . '/../..' . '/src/Form/RegistrationFormType.php',
         'App\\Kernel' => __DIR__ . '/../..' . '/src/Kernel.php',
+        'App\\Repository\\PublicationsRepository' => __DIR__ . '/../..' . '/src/Repository/PublicationsRepository.php',
         'App\\Repository\\UserRepository' => __DIR__ . '/../..' . '/src/Repository/UserRepository.php',
         'App\\Security\\LoginFormAuthenticator' => __DIR__ . '/../..' . '/src/Security/LoginFormAuthenticator.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
@@ -1615,6 +1630,16 @@ class ComposerStaticInitea9d015a26d0788dc202f34a0db122eb
         'Laminas\\Code\\Reflection\\ReflectionInterface' => __DIR__ . '/..' . '/laminas/laminas-code/src/Reflection/ReflectionInterface.php',
         'Laminas\\Code\\Scanner\\DocBlockScanner' => __DIR__ . '/..' . '/laminas/laminas-code/src/Scanner/DocBlockScanner.php',
         'Locale' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/Locale.php',
+        'Nelmio\\CorsBundle\\DependencyInjection\\Compiler\\CorsConfigurationProviderPass' => __DIR__ . '/..' . '/nelmio/cors-bundle/DependencyInjection/Compiler/CorsConfigurationProviderPass.php',
+        'Nelmio\\CorsBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/nelmio/cors-bundle/DependencyInjection/Configuration.php',
+        'Nelmio\\CorsBundle\\DependencyInjection\\NelmioCorsExtension' => __DIR__ . '/..' . '/nelmio/cors-bundle/DependencyInjection/NelmioCorsExtension.php',
+        'Nelmio\\CorsBundle\\EventListener\\CacheableResponseVaryListener' => __DIR__ . '/..' . '/nelmio/cors-bundle/EventListener/CacheableResponseVaryListener.php',
+        'Nelmio\\CorsBundle\\EventListener\\CorsListener' => __DIR__ . '/..' . '/nelmio/cors-bundle/EventListener/CorsListener.php',
+        'Nelmio\\CorsBundle\\NelmioCorsBundle' => __DIR__ . '/..' . '/nelmio/cors-bundle/NelmioCorsBundle.php',
+        'Nelmio\\CorsBundle\\Options\\ConfigProvider' => __DIR__ . '/..' . '/nelmio/cors-bundle/Options/ConfigProvider.php',
+        'Nelmio\\CorsBundle\\Options\\ProviderInterface' => __DIR__ . '/..' . '/nelmio/cors-bundle/Options/ProviderInterface.php',
+        'Nelmio\\CorsBundle\\Options\\Resolver' => __DIR__ . '/..' . '/nelmio/cors-bundle/Options/Resolver.php',
+        'Nelmio\\CorsBundle\\Options\\ResolverInterface' => __DIR__ . '/..' . '/nelmio/cors-bundle/Options/ResolverInterface.php',
         'Normalizer' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/Resources/stubs/Normalizer.php',
         'NumberFormatter' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/Resources/stubs/NumberFormatter.php',
         'PhpParser\\Builder' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/Builder.php',

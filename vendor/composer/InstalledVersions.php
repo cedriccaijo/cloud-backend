@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => 'aa9d1dcd31b97e1ef35dab444c969506298ea754',
+    'reference' => '0244b47eb0b7d1b4a570413b21d383f38cff2ec2',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => 'aa9d1dcd31b97e1ef35dab444c969506298ea754',
+      'reference' => '0244b47eb0b7d1b4a570413b21d383f38cff2ec2',
     ),
     'doctrine/annotations' => 
     array (
@@ -205,6 +205,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '6fd96d4d913571a2cd056a27b123fa28cb90ac4e',
+    ),
+    'nelmio/cors-bundle' => 
+    array (
+      'pretty_version' => '2.2.0',
+      'version' => '2.2.0.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '0ee5ee30b0ee08ea122d431ae6e0ddeb87f035c0',
     ),
     'nikic/php-parser' => 
     array (

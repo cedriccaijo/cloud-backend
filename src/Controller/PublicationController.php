@@ -55,8 +55,10 @@ class PublicationController extends AbstractController
             return $this->redirectToRoute('/publication');
         }
 
-        return $this->renderForm('publication/create.html.twig', [
-            'form' => $form
-        ]);
+        return $this->json($newPublication);
+
+        // return $this->renderForm('publication/create.html.twig', [
+        //     'form' => $form,
+        // ]);
     }
 }
