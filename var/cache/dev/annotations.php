@@ -639,18 +639,18 @@ return [[
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver' => 0,
 '[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver' => 1,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23__construct' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23__construct' => 1,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23__construct' => 21,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23supports' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23supports' => 1,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23supports' => 21,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23resolve' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23resolve' => 1,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23resolve' => 21,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%24tokenStorage' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%24tokenStorage' => 1,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%24tokenStorage' => 21,
 
 ], [
 
 0 => [],
-1 => 1647860205,
+1 => 1647869642,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1120,5 +1120,6 @@ return [[
         []
     );
 },
+21 => 1647869643,
 
 ]];
