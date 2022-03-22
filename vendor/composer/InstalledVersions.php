@@ -30,7 +30,7 @@ private static $installed = array (
     'aliases' => 
     array (
     ),
-    'reference' => '216af11771358b8450e67047c01e94087b6d7791',
+    'reference' => '38594887c16724979282130d76c38cbec7daef50',
     'name' => '__root__',
   ),
   'versions' => 
@@ -42,7 +42,7 @@ private static $installed = array (
       'aliases' => 
       array (
       ),
-      'reference' => '216af11771358b8450e67047c01e94087b6d7791',
+      'reference' => '38594887c16724979282130d76c38cbec7daef50',
     ),
     'doctrine/annotations' => 
     array (
@@ -724,6 +724,15 @@ private static $installed = array (
       array (
       ),
       'reference' => '53d572f06fc438faae3713cc97d186d941919748',
+    ),
+    'symfony/serializer' => 
+    array (
+      'pretty_version' => 'v5.4.6',
+      'version' => '5.4.6.0',
+      'aliases' => 
+      array (
+      ),
+      'reference' => '851007ff0781d06d1bf9890069ab19ac1610a027',
     ),
     'symfony/service-contracts' => 
     array (

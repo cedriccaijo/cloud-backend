@@ -21,7 +21,8 @@ class RegistrationController extends AbstractController
     private $serializer;
 
     public function __construct(
-        SerializerInterface $serializer)
+        SerializerInterface $serializer
+        )
     {
         $this->serializer = $serializer;
     }

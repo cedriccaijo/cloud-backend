@@ -80,8 +80,12 @@ return [[
 '[C]App%5CController%5CPublicationController%24PublicationsRepository' => 1,
 'App%5CController%5CRegistrationController' => 0,
 '[C]App%5CController%5CRegistrationController' => 1,
+'App%5CController%5CRegistrationController%23__construct' => 0,
+'[C]App%5CController%5CRegistrationController%23__construct' => 1,
 'App%5CController%5CRegistrationController%23register' => 5,
 '[C]App%5CController%5CRegistrationController%23register' => 1,
+'App%5CController%5CRegistrationController%24serializer' => 0,
+'[C]App%5CController%5CRegistrationController%24serializer' => 1,
 'App%5CController%5CSecurityController' => 0,
 '[C]App%5CController%5CSecurityController' => 1,
 'App%5CController%5CSecurityController%23login' => 6,
@@ -639,18 +643,18 @@ return [[
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver' => 0,
 '[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver' => 1,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23__construct' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23__construct' => 21,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23__construct' => 1,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23supports' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23supports' => 21,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23supports' => 1,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23resolve' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23resolve' => 21,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%23resolve' => 1,
 'Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%24tokenStorage' => 0,
-'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%24tokenStorage' => 21,
+'[C]Symfony%5CComponent%5CSecurity%5CHttp%5CController%5CUserValueResolver%24tokenStorage' => 1,
 
 ], [
 
 0 => [],
-1 => 1647869642,
+1 => 1647950222,
 2 => static function () {
     return \Symfony\Component\VarExporter\Internal\Hydrator::hydrate(
         $o = [
@@ -1120,6 +1124,5 @@ return [[
         []
     );
 },
-21 => 1647869643,
 
 ]];
