@@ -42,7 +42,7 @@ Temporary Items
 /app/spool/*
 
 # Cache, session files and logs (Symfony3)
-/var
+/var/*
 /var/cache/*
 /var/logs/*
 /var/sessions/*
