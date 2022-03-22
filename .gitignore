@@ -93,3 +93,4 @@ Temporary Items
 # End of https://www.toptal.com/developers/gitignore/api/macos,symfony
 
 .env
+._mysql_data_dir

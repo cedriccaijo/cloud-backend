@@ -10,7 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PublicationsRepository;
-use Doctrine\Common\Annotations\DocLexer;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class PublicationController extends AbstractController
 {
@@ -19,10 +21,12 @@ class PublicationController extends AbstractController
 
     public function __construct(
         EntityManagerInterface $entityManager,
-        PublicationsRepository $PublicationsRepository)
+        PublicationsRepository $PublicationsRepository,
+        SerializerInterface $serializer)
     {
         $this->entityManager = $entityManager;
         $this->PublicationsRepository = $PublicationsRepository;
+        $this->serializer = $serializer;
     }    
 
 
@@ -55,7 +59,16 @@ class PublicationController extends AbstractController
             return $this->redirectToRoute('/publication');
         }
 
-        return $this->json($newPublication);
+        $result = $this->serializer->serialize(
+            $publication,
+            'json',
+            [
+                AbstractNormalizer::ATTRIBUTES =>
+                    ['id', 'title', 'content', 'created_at'
+                    ]
+            ]
+        );
+        return new JsonResponse($result, 200, [], true);
 
         // return $this->renderForm('publication/create.html.twig', [
         //     'form' => $form,
