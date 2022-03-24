@@ -63,6 +63,10 @@ class RegistrationController extends AbstractController
         $user->setFirstname($content['firstname']);
         $user->setLastname($content['lastname']);
 
+        if ($user->getToken() === null) {
+            $user->setToken(bin2hex(random_bytes(10)));
+        }
+
         try {
             $this->entityManager->persist($user);
             $this->entityManager->flush();
@@ -71,7 +75,7 @@ class RegistrationController extends AbstractController
                 'message' => ['text'=>'User creer', 'level' => 'error']
             ]);
         }
-
+               
         $result = $this->serializer->serialize(
             $user,
             'json',
@@ -82,46 +86,6 @@ class RegistrationController extends AbstractController
             ]
         );
         return new JsonResponse($result, 200, [], true);
-
-        // return $this->json([
-        //     'user' => $user->toArray(),
-        // ]);
-        
-        
-        // $user = new User();
-        // $form = $this->createForm(RegistrationFormType::class, $user);
-        // $form->submit(json_decode($request->getContent(), true));
-
-        // if ($form->isSubmitted() && $form->isValid()) {
-
-        //     $user->setPassword(
-        //         $userPasswordHasher->hashPassword(
-        //                 $user,
-        //                 $form->get('plainPassword')->getData()
-        //             )
-        //         );
-            
-        //     $entityManager->persist($user);
-        //     $entityManager->flush();
-        //     // do anything else you need here, like send an email 
-
-        //     return $userAuthenticator->authenticateUser(
-        //         $user,
-        //         $authenticator,
-        //         $request
-        //     );
-        // }
-        // $result = $this->serializer->serialize(
-        //     $user,
-        //     'json',
-        //     [
-        //         AbstractNormalizer::ATTRIBUTES =>
-        //             ['id', 'email', 'roles', 'posted'
-        //             ]
-        //     ]
-        // );
-        // return new JsonResponse($result, 200, [], true);
-
     }
         
 }

@@ -14,8 +14,8 @@ class PublicationFormType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            ->add('created_at')
-            // ->add('author')
+            // ->add('created_at')
+            ->add('author')
         ;
     }
 
@@ -23,6 +23,7 @@ class PublicationFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Publications::class,
+            'csrf_protection' => false,
         ]);
     }
 }

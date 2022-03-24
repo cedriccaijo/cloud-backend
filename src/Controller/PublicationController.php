@@ -30,37 +30,14 @@ class PublicationController extends AbstractController
         $this->PublicationsRepository = $PublicationsRepository;
         $this->serializer = $serializer;
     }    
-
-
-    /**
-     * @Route("/publication", name="app_publication")
-     */
-    public function index(): Response
-    {
-        $publications = $this->PublicationsRepository->findAl();
-
-        return $this->render('publication/index.html.twig', [
-            'publication' => $publications,
-        ]);
-    }
     
     /**
      * @Route("/create", name="create_publication")
      */
     public function create(Request $request): Response
     {
-       // $publication = new Publications();
-        // $form = $this->createForm(PublicationFormType::class, $publication);
-        // $form->submit(json_decode($request->getContent(), true));
 
-        // if ($form->isSubmitted() && $form->isValid()){
-        //     $newPublication = $form->getData(); 
-        //     $this->entityManager->persist($newPublication);
-        //     $this->entityManager->flush();
-
-        // }
-
-        $content = json_decode($request->getContent());
+        $content = json_decode($request->getContent(), true);
         $form = $this->createForm(PublicationFormType::class);
         $form->submit($content);
 
@@ -71,32 +48,28 @@ class PublicationController extends AbstractController
                 $errors[$propertyName] = $error->getMessage();
             }
             return $this->json([
-                'message' => ['text' => implode('\n', $errors), 'level' => $error]
+                'message' => ['text' => $errors, 'level' => $error]
             ]);
+        }     
 
-            $publication = new Publications();
+            $publications = new Publications();
 
-            $publication->setTitle($content->title);
-            $publication->setContent($content->content);
-            $publication->setCreatedAt($content->createdAt);
-            $publication->setAuthor($content->author);
+            $publications->setTitle($content['title']);
+            $publications->setContent($content['content']);
+            $publications->setCreatedAt(new \DateTime());
+            $publications->setAuthor($content['author']);
 
             try {
-                $this->entityManager->persist($publication);
+                $this->entityManager->persist($publications);
                 $this->entityManager->flush();
             } catch (UniqueConstraintViolationException $exception) {
                 return $this->json([
-                    'message' => ['text'=>'User crée', 'level' => 'error']
+                    'message' => ['text'=>'Publication crée', 'level' => 'error']
                 ]);
             }
 
-            return $this->json([
-                'publication' => $publication->toArray(),
-            ]);
-        }
-
         $result = $this->serializer->serialize(
-            $publication,
+            $publications,
             'json',
             [
                 AbstractNormalizer::ATTRIBUTES =>

@@ -2,43 +2,64 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
-use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Constraints\Json;
 
 class SecurityController extends AbstractController
 {
 
-    private $serializer;
+    /**
+     * @var EntityManagerInterface
+     */
+    private $em;
+
+    /**
+     * @var UserPasswordHasherInterface
+     */
+    private $passwordHasher;
 
     public function __construct(
-        SerializerInterface $serializer
-        )
-    {
-        $this->serializer = $serializer;
+        EntityManagerInterface $em,
+        UserPasswordHasherInterface $passwordHasher) {
+        $this->em = $em;
+        $this->passwordHasher = $passwordHasher;
     }
 
     /**
      * @Route("/login", name="app_login")
      */
-    public function login(AuthenticationUtils $authenticationUtils): Response
+    public function login(Request $request): Response
     {
-        if ($this->getUser()) {
-            // return $this->redirectToRoute('target_path');
+        $email = $request->request->get('email');
+        $password = $request->request->get('password');
+
+        if (null == $email || null == $password) {
+            return new JsonResponse('Invalid request', 400);
         }
 
-        // get the login error if there is one
-        $error = $authenticationUtils->getLastAuthenticationError();
-        // last username entered by the user
-        $lastUsername = $authenticationUtils->getLastUsername();
+        $user = $this->em->getRepository(User::class)->findOneByEmail($email);
+        if (null === $user) {
+            return new JsonResponse('Invalid request', 400);
+        }
 
-        // return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        if (!$this->passwordHasher->isPasswordValid($user, $password)) {
+            return new JsonResponse('Bad credentials.', 401);
+        }
 
-        return $this->json('lol');
+        if ($user->getToken() === null) {
+            $user->setToken(bin2hex(random_bytes(10)));
+            $this->em-->persist($user);
+            $this->em->flush();
+        }
+
+        return new JsonResponse(['email' => $user->getEmail(), 'token' =>  $user->getToken()], 200);
     }
 
     /**
