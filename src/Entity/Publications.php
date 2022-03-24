@@ -27,16 +27,6 @@ class Publications
      */
     private $content;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
-
-    /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="posted")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $author;
 
     public function getId(): ?int
     {
@@ -67,27 +57,4 @@ class Publications
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
-
-        return $this;
-    }
-
-    public function getAuthor(): ?User
-    {
-        return $this->author;
-    }
-
-    public function setAuthor(?User $author): self
-    {
-        $this->author = $author;
-
-        return $this;
-    }
 }

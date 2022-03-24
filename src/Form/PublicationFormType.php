@@ -14,8 +14,6 @@ class PublicationFormType extends AbstractType
         $builder
             ->add('title')
             ->add('content')
-            // ->add('created_at')
-            ->add('author')
         ;
     }
 

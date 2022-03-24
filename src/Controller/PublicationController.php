@@ -56,8 +56,6 @@ class PublicationController extends AbstractController
 
             $publications->setTitle($content['title']);
             $publications->setContent($content['content']);
-            $publications->setCreatedAt(new \DateTime());
-            $publications->setAuthor($content['author']);
 
             try {
                 $this->entityManager->persist($publications);
@@ -67,17 +65,18 @@ class PublicationController extends AbstractController
                     'message' => ['text'=>'Publication crée', 'level' => 'error']
                 ]);
             }
+        return new JsonResponse(['title' => $publications->getTitle(), 'content' =>  $publications->getContent()], 200);
 
-        $result = $this->serializer->serialize(
-            $publications,
-            'json',
-            [
-                AbstractNormalizer::ATTRIBUTES =>
-                    ['id', 'title', 'content', 'created_at', 'author'
-                    ]
-            ]
-        );
-        return new JsonResponse($result, 200, [], true);
+        // $result = $this->serializer->serialize(
+        //     $publications,
+        //     'json',
+        //     [
+        //         AbstractNormalizer::ATTRIBUTES =>
+        //             ['id', 'title', 'content'
+        //             ]
+        //     ]
+        // );
+        // return new JsonResponse($result, 200, [], true);
 
     }
 }

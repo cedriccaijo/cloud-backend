@@ -40,11 +40,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Publications::class, mappedBy="author", orphanRemoval=true)
-     */
-    private $posted;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $firstname;
@@ -158,35 +153,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return ['id' => $this->id, 'email'=>$this->email];
     }
 
-    /**
-     * @return Collection<int, Publications>
-     */
-    public function getPosted(): Collection
-    {
-        return $this->posted;
-    }
-
-    public function addPosted(Publications $posted): self
-    {
-        if (!$this->posted->contains($posted)) {
-            $this->posted[] = $posted;
-            $posted->setAuthor($this);
-        }
-
-        return $this;
-    }
-
-    public function removePosted(Publications $posted): self
-    {
-        if ($this->posted->removeElement($posted)) {
-            // set the owning side to null (unless already changed)
-            if ($posted->getAuthor() === $this) {
-                $posted->setAuthor(null);
-            }
-        }
-
-        return $this;
-    }
 
     public function getFirstname(): ?string
     {
