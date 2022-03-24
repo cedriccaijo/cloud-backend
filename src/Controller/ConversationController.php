@@ -27,8 +27,6 @@ class ConversationController extends AbstractController
      */
     public function index(Request $request): Response
     {
-        $receiver = 
-
         return new JsonResponse();
     }
 }
