@@ -57,9 +57,11 @@ class RegistrationController extends AbstractController
         $user->setPassword(
             $userPasswordHasher->hashPassword(
                 $user,
-                $form->get('plainPassword')->getData()
+                $form->get('password')->getData()
             )
         );
+        $user->setFirstname($content['firstname']);
+        $user->setLastname($content['lastname']);
 
         try {
             $this->entityManager->persist($user);
@@ -75,7 +77,7 @@ class RegistrationController extends AbstractController
             'json',
             [
                 AbstractNormalizer::ATTRIBUTES =>
-                    ['id', 'email', 'roles', 'posted'
+                    ['id', 'email', 'roles', 'posted', 'firstname', 'lastname'
                     ]
             ]
         );
