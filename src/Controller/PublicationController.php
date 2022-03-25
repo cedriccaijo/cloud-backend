@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PublicationsRepository;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use App\Service\UserService;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\String\Slugger\SluggerInterface;
@@ -25,12 +25,14 @@ class PublicationController extends AbstractController
     public function __construct(
         EntityManagerInterface $entityManager,
         PublicationsRepository $PublicationsRepository,
-        SerializerInterface $serializer
+        SerializerInterface $serializer,
+        UserService $userService
         )
     {
         $this->entityManager = $entityManager;
         $this->PublicationsRepository = $PublicationsRepository;
         $this->serializer = $serializer;
+        $this->userService = $userService;
     }    
     
     /**
@@ -38,7 +40,13 @@ class PublicationController extends AbstractController
      */
     public function create(Request $request, SluggerInterface $slugger): Response
     {
+        /** @var User $user */
+        $user = $this->userService->getUserFromRequest($request);
+        if (null === $user) {
+            return new Response('Unauthorized', 401);
+        }
 
+        $userToken = $user->getToken();
         $content = json_decode($request->getContent(), true);
         $form = $this->createForm(PublicationFormType::class);
         $form->submit($content);

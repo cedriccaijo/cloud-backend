@@ -35,13 +35,18 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('email');
         $password = $request->request->get('password');
 
-        if (null !== $email || null !== $password){
-            return new JsonResponse('Welcome', 200);
+        if (null == $email || null == $password){
+            return new JsonResponse('Invalid request', 400);
+        }
+        
+        if (!$this->passwordHasher->isPasswordValid($password)) {
+            return new JsonResponse('Bad credentials.', 401);
         }
 
-
         return new Passport(
-            new UserBadge($email),
+            new UserBadge($email, function ($userIdentifier) {
+                return $this->userRepository->findOneBy(['email' => $userIdentifier]);
+            }),
             new PasswordCredentials($password)
         );
     }
