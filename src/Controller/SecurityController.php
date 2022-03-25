@@ -57,8 +57,7 @@ class SecurityController extends AbstractController
             $user->setToken(bin2hex(random_bytes(10)));
             $this->em-->persist($user);
             $this->em->flush();
-        }
-
+        } 
         return new JsonResponse(['email' => $user->getEmail(), 'token' =>  $user->getToken()], 200);
     }
 

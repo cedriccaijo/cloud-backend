@@ -27,6 +27,10 @@ class Publications
      */
     private $content;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageFile;
 
     public function getId(): ?int
     {
@@ -53,6 +57,18 @@ class Publications
     public function setContent(string $content): self
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?string $imageFile): self
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

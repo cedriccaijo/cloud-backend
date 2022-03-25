@@ -8,11 +8,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Repository\PublicationsRepository;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 class PublicationController extends AbstractController
 {
@@ -34,7 +36,7 @@ class PublicationController extends AbstractController
     /**
      * @Route("/create", name="create_publication")
      */
-    public function create(Request $request): Response
+    public function create(Request $request, SluggerInterface $slugger): Response
     {
 
         $content = json_decode($request->getContent(), true);
@@ -51,32 +53,34 @@ class PublicationController extends AbstractController
                 'message' => ['text' => $errors, 'level' => $error]
             ]);
         }     
+        $publications = new Publications();
 
-            $publications = new Publications();
+        $imageFile = $form->get('imageFile')->getData();
 
-            $publications->setTitle($content['title']);
-            $publications->setContent($content['content']);
-
+        if ($imageFile){
+            $newImageFile = uniqid() . '.' . $imageFile->guessExtension();
             try {
-                $this->entityManager->persist($publications);
-                $this->entityManager->flush();
-            } catch (UniqueConstraintViolationException $exception) {
-                return $this->json([
-                    'message' => ['text'=>'Publication crée', 'level' => 'error']
-                ]);
+                $imageFile->move(
+                    $this->getParameter('images_directory'),
+                    $newImageFile
+                );
+            } catch (FileException $e){
+                return new Response($e->getMessage());
             }
+            $publications->setImageFile($newImageFile);
+        }
+        
+        $publications->setTitle($content['title']);
+        $publications->setContent($content['content']);
+
+        try {
+            $this->entityManager->persist($publications);
+            $this->entityManager->flush();
+        } catch (UniqueConstraintViolationException $exception) {
+            return $this->json([
+                'message' => ['text'=>'Publication crée', 'level' => 'error']
+            ]);
+        }
         return new JsonResponse(['title' => $publications->getTitle(), 'content' =>  $publications->getContent()], 200);
-
-        // $result = $this->serializer->serialize(
-        //     $publications,
-        //     'json',
-        //     [
-        //         AbstractNormalizer::ATTRIBUTES =>
-        //             ['id', 'title', 'content'
-        //             ]
-        //     ]
-        // );
-        // return new JsonResponse($result, 200, [], true);
-
     }
 }
